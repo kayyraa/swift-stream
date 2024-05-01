@@ -1,18 +1,19 @@
-import all from "./modules/suffixes.js";
+import { all as suffixes } from "./modules/suffixes.js";
+import * as ds from "./modules/datastore.js";
 
 const Options = {
-    Version: "13.11.07.21.2",
-    NSR: 1750,
+    NSR: 2250,
 };
 
 document.addEventListener("DOMContentLoaded", function() {
     const SearchButton = document.getElementById("search-button");
     const SearchInput = document.getElementById("search-input");
-    const VersionText = document.getElementById("version-text");
     const Notification = document.getElementById("notification-container");
     const NotificationText = document.getElementById("notification-text");
-
-    VersionText.innerHTML = Options.Version;
+    
+    if (ds.Load("History") !== undefined || ds.Load("History") !== null) { 
+        SearchInput.value = ds.Load("History");
+    }
 
     function Notify(notificationText, duration) {
         NotificationText.innerHTML = notificationText;
@@ -23,13 +24,14 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     function Search(input) {
+        ds.Save("History", input);
         const ModifiedInput = input.trim();
         if (ModifiedInput.startsWith("http://") || ModifiedInput.startsWith("https://")) {
             window.open(ModifiedInput, "_self");
         } else if (ModifiedInput !== "") {
             window.open(`https://www.google.com/search?q=${input}`, "_self");
         }
-    }
+    };
 
     SearchButton.addEventListener("click", function() {
         if (SearchInput.value.trim() === "") {
@@ -53,7 +55,7 @@ document.addEventListener("DOMContentLoaded", function() {
     function Refresh() {
         const ModifiedInput = SearchInput.value.trim();
         let endsWithSuffix = false;
-        all.forEach(suffix => {
+        suffixes.forEach(suffix => {
             if (ModifiedInput.endsWith(suffix)) {
                 endsWithSuffix = true;
             }
@@ -68,7 +70,7 @@ document.addEventListener("DOMContentLoaded", function() {
         setTimeout(() => {
             Refresh();
         }, 50);
-    }
-
+    };
+    
     Refresh();
 });
