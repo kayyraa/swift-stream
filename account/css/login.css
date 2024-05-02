@@ -1,0 +1,51 @@
+@import url("../../modules/fonts.css");
+
+body {
+    background-color: rgb(60, 60, 60) !important;
+    font-family: "NunitoNewtown" !important;
+    color: white !important;
+    overflow: hidden !important;
+    user-select: none !important;
+    -moz-user-select: none !important;
+    -webkit-user-select: none !important;
+    -webkit-user-drag: none !important;
+}
+
+h1 {
+    font-size: 48px;
+}
+
+.form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 0 auto;
+    width: 100%;
+}
+
+input {
+    margin-top: 5px;
+    text-align: center;
+    font-size: 32px;
+    font-family: "NunitoNewtown";
+    font-weight: 700;
+    color: black;
+    border: 0px;
+    background-color: white;
+    border-radius: 32px;
+}
+
+button {
+    margin-top: 5px;
+    text-align: center;
+    font-size: 32px;
+    font-family: "NunitoNewtown";
+    font-weight: 700;
+    color: black;
+    border: 0px;
+    background-color: white;
+    border-radius: 32px;
+    width: 387.2px;
+    cursor: pointer;
+}

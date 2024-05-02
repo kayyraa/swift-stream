@@ -1,4 +1,4 @@
-import { all as suffixes } from "./modules/suffixes.js";
+import { all, all as suffixes } from "./modules/suffixes.js";
 import * as ds from "./modules/datastore.js";
 
 const Options = {
@@ -10,10 +10,48 @@ document.addEventListener("DOMContentLoaded", function() {
     const SearchInput = document.getElementById("search-input");
     const Notification = document.getElementById("notification-container");
     const NotificationText = document.getElementById("notification-text");
-    
-    if (ds.Load("History") !== undefined || ds.Load("History") !== null) { 
-        SearchInput.value = ds.Load("History");
+    const AppsButton = document.getElementById("apps-button");
+    const Apps = document.getElementById("apps");
+
+    const AllApps = {
+        Accounts: document.getElementById("account-button"),
+        History: document.getElementById("history-button"),
     }
+    
+    if (ds.Load("username") !== null && ds.Load("password") !== null) {
+        if (ds.Load("History") !== null || ds.Load("History") !== null) {
+            SearchInput.value = ds.Load("History");
+        }
+    }
+
+    AllApps.History.addEventListener("load", function() {
+        if (ds.Load("username") !== null && ds.Load("password") !== null) {
+            AllApps.History.style.visibility = "visible";
+        } else {
+            AllApps.History.style.visibility = "hidden";
+        }
+    })
+
+    AllApps.Accounts.addEventListener("click", function() {
+        if (ds.Load("username") !== null && ds.Load("password") !== null) {
+            window.open("account/login.html", "_self")
+        } else {
+            window.open("account/signin.html", "_self")
+        }
+    });
+
+    AppsButton.addEventListener("click", function() {
+        const isEnabled = Apps.dataset.enabled === "true";
+        if (!isEnabled) {
+            Apps.style.top = "0.75%";
+            AppsButton.setAttribute("fill", "black");
+            Apps.dataset.enabled = true;
+        } else {
+            Apps.style.top = "-55%";
+            AppsButton.setAttribute("fill", "white");
+            Apps.dataset.enabled = false;
+        }
+    });    
 
     function Notify(notificationText, duration) {
         NotificationText.innerHTML = notificationText;
@@ -24,7 +62,9 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     function Search(input) {
-        ds.Save("History", input);
+        if (ds.Load("username") !== null && ds.Load("password") !== null) {
+            ds.Save("History", input);
+        }
         const ModifiedInput = input.trim();
         if (ModifiedInput.startsWith("http://") || ModifiedInput.startsWith("https://")) {
             window.open(ModifiedInput, "_self");
