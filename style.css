@@ -20,7 +20,7 @@ button {
 
 .apps {
     position: fixed;
-    right: 0.75%;
+    right: 5.5%;
     top: -55%;
     background-color: rgb(90, 90, 90);
     border-radius: 18px;
@@ -29,20 +29,17 @@ button {
     transition: top 0.5s ease;
 }
 
-#history-button {
-    width: 64px;
+.apps > img {
+    width: 48px;
     align-self: 1 / 1;
     cursor: pointer;
-    margin-left: 5px;
-    margin-top: 5px;
+    margin-left: 10px;
+    margin-top: 10px;
+    transition: transform 0.5s ease;
 }
 
-#account-button {
-    width: 64px;
-    align-self: 1 / 1;
-    cursor: pointer;
-    margin-left: 5px;
-    margin-top: 5px;
+.apps > img:hover {
+    transform: scale(1.25);
 }
 
 #apps-button {

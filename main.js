@@ -16,6 +16,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const AllApps = {
         Accounts: document.getElementById("account-button"),
         History: document.getElementById("history-button"),
+        Dictionary: document.getElementById("dictionary-button"),
     }
     
     if (ds.Load("username") !== null && ds.Load("password") !== null) {
@@ -24,13 +25,17 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
+    AllApps.Dictionary.addEventListener("click", function() {
+        window.open("apps/dictionary.html", "_self");
+    });
+
     AllApps.History.addEventListener("load", function() {
         if (ds.Load("username") !== null && ds.Load("password") !== null) {
             AllApps.History.style.visibility = "visible";
         } else {
             AllApps.History.style.visibility = "hidden";
         }
-    })
+    });
 
     AllApps.Accounts.addEventListener("click", function() {
         if (ds.Load("username") !== null && ds.Load("password") !== null) {
@@ -59,7 +64,7 @@ document.addEventListener("DOMContentLoaded", function() {
         setTimeout(() => {
             Notification.style.left = "-400px";
         }, duration);
-    }
+    };
 
     function Search(input) {
         if (ds.Load("username") !== null && ds.Load("password") !== null) {
