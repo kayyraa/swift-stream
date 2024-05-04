@@ -9,19 +9,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     DictionButton.addEventListener("click", () => {
         let Input = DictionInput.value.trim();
-        Input = Input.split(/\W+/);
-        Input = Input.filter(word => !["the", "is", "and", "a", "an", "in", "on"].includes(word.toLowerCase())); // Filtering out stopwords
-        
-        const Frequency = {}
-        Input.forEach(word => {
-            const LowerCaseWord = word.toLowerCase();
-            if (!["the", "is", "and", "a", "an", "in", "on"].includes(LowerCaseWord)) {
-                Frequency[LowerCaseWord] = (Frequency[LowerCaseWord] || 0) + 1;
-            };
-        })
+        window.open(`https://www.google.com/search?q=dictionary&oq=dicito&gs_lcrp=EgZjaHJvbWUqCQgBEAAYChiABDIGCAAQRRg5MgkIARAAGAoYgAQyCQgCEAAYChiABDIJCAMQABgKGIAEMgkIBBAAGAoYgAQyCQgFEAAYChiABDIJCAYQABgKGIAEMgkIBxAAGAoYgAQyCQgIEAAYChiABDIJCAkQABgKGIAE0gEIMTU4M2owajeoAgCwAgA&sourceid=chrome&ie=UTF-8#dobs=${Input}`, "_self");
+    });
 
-        const Words = Object.keys(Frequency).filter(word => Frequency[word] > 1);
-
-        console.log(Words);
+    document.addEventListener("keydown", function(e) {
+        const KeyPressed = e.key;
+        if (KeyPressed === "Enter") {
+            let Input = DictionInput.value.trim();
+        window.open(`https://www.google.com/search?q=dictionary&oq=dicito&gs_lcrp=EgZjaHJvbWUqCQgBEAAYChiABDIGCAAQRRg5MgkIARAAGAoYgAQyCQgCEAAYChiABDIJCAMQABgKGIAEMgkIBBAAGAoYgAQyCQgFEAAYChiABDIJCAYQABgKGIAEMgkIBxAAGAoYgAQyCQgIEAAYChiABDIJCAkQABgKGIAE0gEIMTU4M2owajeoAgCwAgA&sourceid=chrome&ie=UTF-8#dobs=${Input}`, "_self");
+        };
     });
 });

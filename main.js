@@ -1,4 +1,4 @@
-import { all, all as suffixes } from "./modules/suffixes.js";
+import { all as suffixes } from "./modules/suffixes.js";
 import * as ds from "./modules/datastore.js";
 
 const Options = {
@@ -17,11 +17,12 @@ document.addEventListener("DOMContentLoaded", function() {
         Accounts: document.getElementById("account-button"),
         History: document.getElementById("history-button"),
         Dictionary: document.getElementById("dictionary-button"),
-    }
+    };
     
-    if (ds.Load("username") !== null && ds.Load("password") !== null) {
-        if (ds.Load("History") !== null || ds.Load("History") !== null) {
-            SearchInput.value = ds.Load("History");
+    if (ds.Load("username") && ds.Load("password")) {
+        const history = ds.Load("History");
+        if (history) {
+            SearchInput.value = history;
         }
     }
 
@@ -30,92 +31,73 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     AllApps.History.addEventListener("load", function() {
-        if (ds.Load("username") !== null && ds.Load("password") !== null) {
-            AllApps.History.style.visibility = "visible";
-        } else {
-            AllApps.History.style.visibility = "hidden";
-        }
+        const username = ds.Load("username");
+        const password = ds.Load("password");
+        AllApps.History.style.visibility = username && password ? "visible" : "hidden";
     });
 
     AllApps.Accounts.addEventListener("click", function() {
-        if (ds.Load("username") !== null && ds.Load("password") !== null) {
-            window.open("account/login.html", "_self")
-        } else {
-            window.open("account/signin.html", "_self")
-        }
+        const username = ds.Load("username");
+        const password = ds.Load("password");
+        const url = username && password ? "account/login.html" : "account/signin.html";
+        window.open(url, "_self");
     });
 
     AppsButton.addEventListener("click", function() {
         const isEnabled = Apps.dataset.enabled === "true";
-        if (!isEnabled) {
-            Apps.style.top = "0.75%";
-            AppsButton.setAttribute("fill", "black");
-            Apps.dataset.enabled = true;
-        } else {
-            Apps.style.top = "-55%";
-            AppsButton.setAttribute("fill", "white");
-            Apps.dataset.enabled = false;
-        }
-    });    
+        Apps.style.top = isEnabled ? "-55%" : "0.75%";
+        Apps.dataset.enabled = !isEnabled;
+    });
 
     function Notify(notificationText, duration) {
-        NotificationText.innerHTML = notificationText;
+        NotificationText.textContent = notificationText;
         Notification.style.left = "10px";
         setTimeout(() => {
             Notification.style.left = "-400px";
         }, duration);
-    };
+    }
 
     function Search(input) {
-        if (ds.Load("username") !== null && ds.Load("password") !== null) {
+        const history = ds.Load("History");
+        if (history) {
             ds.Save("History", input);
         }
         const ModifiedInput = input.trim();
         if (ModifiedInput.startsWith("http://") || ModifiedInput.startsWith("https://")) {
             window.open(ModifiedInput, "_self");
         } else if (ModifiedInput !== "") {
-            window.open(`https://www.google.com/search?q=${input}`, "_self");
+            window.open(`https://www.google.com/search?q=${encodeURIComponent(input)}`, "_self");
         }
-    };
+    }
 
     SearchButton.addEventListener("click", function() {
-        if (SearchInput.value.trim() === "") {
+        const trimmedValue = SearchInput.value.trim();
+        if (trimmedValue === "") {
             Notify("Please enter a search.", Options.NSR);
         } else {
-            Search(SearchInput.value);
+            Search(trimmedValue);
         }
     });
     
     document.addEventListener("keypress", function(event) {
-        const KeyCode = event.key;
-        if (KeyCode === "Enter") {
-            if (SearchInput.value.trim() === "") {
+        if (event.key === "Enter") {
+            const trimmedValue = SearchInput.value.trim();
+            if (trimmedValue === "") {
                 Notify("Please enter a search.", Options.NSR);
             } else {
-                Search(SearchInput.value);
+                Search(trimmedValue);
             }
         }
     });
 
     function Refresh() {
         const ModifiedInput = SearchInput.value.trim();
-        let endsWithSuffix = false;
-        suffixes.forEach(suffix => {
-            if (ModifiedInput.endsWith(suffix)) {
-                endsWithSuffix = true;
-            }
-        });
+        const endsWithSuffix = suffixes.some(suffix => ModifiedInput.endsWith(suffix));
         if (ModifiedInput.startsWith("http://") || ModifiedInput.startsWith("https://")) {
-            if (endsWithSuffix) {
-                SearchInput.style.color = "rgb(0, 0, 0)";
-            } else {
-                SearchInput.style.color = "rgb(200, 0, 0)";
-            }
+            SearchInput.style.color = endsWithSuffix ? "rgb(0, 0, 0)" : "rgb(200, 0, 0)";
         }
-        setTimeout(() => {
-            Refresh();
-        }, 50);
-    };
+        setTimeout(Refresh, 50);
+    }
     
     Refresh();
 });
