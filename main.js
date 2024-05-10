@@ -14,8 +14,6 @@ document.addEventListener("DOMContentLoaded", function() {
     const Apps = document.getElementById("apps");
 
     const AllApps = {
-        Accounts: document.getElementById("account-button"),
-        History: document.getElementById("history-button"),
         Dictionary: document.getElementById("dictionary-button"),
     };
     
@@ -28,19 +26,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
     AllApps.Dictionary.addEventListener("click", function() {
         window.open("apps/dictionary.html", "_self");
-    });
-
-    AllApps.History.addEventListener("load", function() {
-        const username = ds.Load("username");
-        const password = ds.Load("password");
-        AllApps.History.style.visibility = username && password ? "visible" : "hidden";
-    });
-
-    AllApps.Accounts.addEventListener("click", function() {
-        const username = ds.Load("username");
-        const password = ds.Load("password");
-        const url = username && password ? "account/login.html" : "account/signin.html";
-        window.open(url, "_self");
     });
 
     AppsButton.addEventListener("click", function() {
