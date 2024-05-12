@@ -1,0 +1,100 @@
+@import url("../../modules/fonts.css");
+
+body {
+    background-color: rgb(60, 60, 60) !important;
+    color: white !important;
+    font-family: "NunitoNewtown", sans-serif !important;
+    font-size: 1.25em !important;
+    overflow: hidden !important;
+    user-select: none !important;
+    -moz-user-select: none !important;
+    -webkit-user-select: none !important;
+    -webkit-user-drag: none !important;
+}
+
+input {
+    background-color: white !important;
+    border: 0px !important;
+    color: white !important;
+    font-family: "NunitoNewtown", sans-serif !important;
+}
+
+button {
+    background-color: transparent;
+    border: 0px;
+}
+
+.header > h1 {
+    position: relative;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    top: 45px;
+}
+
+.app {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.word-input {
+    position: relative;
+    left: 10px;
+    color: black !important;
+    font-weight: 800;
+    font-size: 24px;
+    text-align: center !important;
+    border-radius: 24px;
+    width: 512px;
+    height: 32px;
+    transition: width 0.5s ease;
+}
+
+.word-input:hover {
+    width: 750px;
+}
+
+.search-button {
+    position: relative;
+    right: 5px;
+    top: 15px;
+    width: 48px;
+    aspect-ratio: 1 / 1;
+    cursor: pointer;
+}
+
+.diction-section {
+    opacity: 0;
+
+    background-color: rgba(255, 255, 255, 0.125);
+    border-radius: 14px;
+
+    width: 700px;
+    height: 400px;
+
+    position: fixed;
+    display: flex;
+    justify-content: top;
+    flex-direction: column;
+    text-align: left;
+    width: 100%;
+
+    padding-left: 10px;
+
+    left: 5%;
+    top: 30%;
+}
+
+.word {
+    font-size: 96px;
+    font-weight: 800;
+}
+
+.meaning {
+    font-size: 24px;
+    padding-left: 10px;
+}

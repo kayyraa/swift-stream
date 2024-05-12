@@ -1,0 +1,162 @@
+@import url("./modules/fonts.css");
+@import url("./modules/animations.css");
+
+body {
+    background-color: rgb(60, 60, 60) !important;
+    color: white !important;
+    font-family: "NunitoNewtown", sans-serif !important;
+    font-size: 1.25em !important;
+    overflow: hidden !important;
+    user-select: none !important;
+    -moz-user-select: none !important;
+    -webkit-user-select: none !important;
+    -webkit-user-drag: none !important;
+}
+
+button {
+    background-color: transparent;
+    border: 0px;
+}
+
+.apps {
+    position: fixed;
+    right: 5.5%;
+    top: -55%;
+    background-color: rgb(90, 90, 90);
+    border-radius: 18px;
+    width: 250px;
+    aspect-ratio: 1 / 1.5;
+    transition: top 0.5s ease;
+}
+
+.apps > img {
+    width: 48px;
+    align-self: center;
+    cursor: pointer;
+    margin-left: 15px;
+    margin-top: 15px;
+    transition: transform 0.65s ease;
+}
+
+.apps > img:hover {
+    transform: scale(1.4);
+}
+
+#apps-button {
+    position: fixed;
+    right: 1%;
+    top: 1%;
+    width: 64px;
+    aspect-ratio: 1 / 1;
+    cursor: pointer;
+    transition: transform 0.5s ease;
+}
+
+#apps-button:hover {
+    transform: scale(1.25);
+}
+
+#home-button {
+    position: fixed;
+    width: 64px;
+    height: 64px;
+    background-color: transparent;
+    border: 0px;
+    cursor: pointer;
+    transition: transform 0.25s ease;
+}
+
+#home-button:hover {
+    transform: scale(1.25); 
+}
+
+#home-button > img {
+    width: 64px;
+    height: 64px;
+    transition: transform 0.5s ease;
+}
+
+#home-button > img:hover {
+    transform: rotate(180deg);
+}
+
+.search-engine {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.header {
+    font-size: 4.5em;
+    transition: font-size 0.5s ease;
+    cursor: pointer;
+}
+
+.header:hover {
+    font-size: 6em;
+}
+
+.search-input {
+    position: relative;
+    text-align: center;
+    right: 10px;
+    bottom: 75px;
+    border: 0;
+    width: 570px;
+    height: 32px;
+    font-size: 1.5em;
+    font-family: "NunitoNewtown", sans-serif !important;
+    border-radius: 50px;
+    font-weight: 700;
+    transition: color 0.25s ease, width 0.5s ease;
+    padding: 8px;
+}
+
+.search-input:hover {
+    width: 800px;
+}
+
+.search-section {
+    position: relative;
+    left: 22px;
+}
+
+.search-button {
+    position: relative;
+    bottom: 45px;
+    right: 25px;
+    width: calc(64px + 16px);
+    height: calc(64px + 16px);
+    cursor: pointer;
+    transform: rotate(0deg);
+    transition: transform 0.75s ease, left 0.75s ease;
+}
+
+.search-button:hover {
+    transform: rotate(360deg);
+}
+
+#search-button {
+    border: 0;
+    background-color: transparent !important;
+}
+
+#notification-container {
+    position: fixed;
+    left: -400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    width: 300px;
+    height: 70px;
+    background-color: white;
+    color: black;
+    font-weight: 800;
+    border-radius: 8px;
+    transition: left 0.75s ease-in-out;
+}
