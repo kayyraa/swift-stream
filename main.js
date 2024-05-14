@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const NotificationText = document.getElementById("notification-text");
     const AppsButton = document.getElementById("apps-button");
     const Apps = document.getElementById("apps");
+    const ShortcutsBar = document.getElementById("shortcuts-bar");
 
     const AllApps = {
         Dictionary: document.getElementById("dictionary-button"),
@@ -33,9 +34,27 @@ document.addEventListener("DOMContentLoaded", function() {
 
     AppsButton.addEventListener("click", function() {
         const isEnabled = Apps.dataset.enabled === "true";
-        Apps.style.top = isEnabled ? "-55%" : "0.75%";
+        Apps.style.top = isEnabled ? `-55%` : `${parseInt(Apps.dataset.top)}%`;
         Apps.dataset.enabled = !isEnabled;
     });
+
+    function CheckStoragePrefix(Prefix) {
+        for (var index = 0; index < localStorage.length; index++) {
+            var key = localStorage.key(index);
+            if (key.startsWith(Prefix)) {
+                return key;
+            };
+        };
+        return null;
+    };
+
+    function OrderStorageAsync(Key) {
+        if (localStorage.getItem(Key) !== null) {
+            return localStorage.getItem(Key);
+        } else {
+            return null;
+        };
+    };
 
     function Notify(notificationText, duration) {
         NotificationText.textContent = notificationText;
@@ -96,6 +115,30 @@ document.addEventListener("DOMContentLoaded", function() {
         };
         setTimeout(Refresh, 50);
     };
+
+    function Load() {
+        for (var index = 0; index < localStorage.length; index++) {
+            var key = localStorage.key(index);
+            if (key.startsWith("sh_")) {
+                const FullName = key.replace("sh_", "");
+                const href = localStorage.getItem(key);
+    
+                const NewShortcut = document.createElement("span");
+                NewShortcut.innerHTML = FullName;
+                NewShortcut.dataset.href = href;
+                ShortcutsBar.appendChild(NewShortcut);
+    
+                NewShortcut.addEventListener("click", function() {
+                    window.open(NewShortcut.dataset.href, "_self");
+                });
+            };
+        };
+    
+        if (ShortcutsBar.childElementCount === 0) {
+            ShortcutsBar.style.backgroundColor = "transparent";
+        };
+    };    
     
     Refresh();
+    Load();
 });

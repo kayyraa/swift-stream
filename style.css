@@ -45,7 +45,7 @@ button {
 #apps-button {
     position: fixed;
     right: 1%;
-    top: 1%;
+    top: 5%;
     width: 64px;
     aspect-ratio: 1 / 1;
     cursor: pointer;
@@ -54,30 +54,6 @@ button {
 
 #apps-button:hover {
     transform: scale(1.25);
-}
-
-#home-button {
-    position: fixed;
-    width: 64px;
-    height: 64px;
-    background-color: transparent;
-    border: 0px;
-    cursor: pointer;
-    transition: transform 0.25s ease;
-}
-
-#home-button:hover {
-    transform: scale(1.25); 
-}
-
-#home-button > img {
-    width: 64px;
-    height: 64px;
-    transition: transform 0.5s ease;
-}
-
-#home-button > img:hover {
-    transform: rotate(180deg);
 }
 
 .search-engine {
@@ -159,4 +135,32 @@ button {
     font-weight: 800;
     border-radius: 8px;
     transition: left 0.75s ease-in-out;
+}
+
+.shortcuts-bar {
+    position: fixed;
+    background-color: rgb(75, 75, 75);
+    width: 100%;
+    height: 48px;
+    top: 0%;
+    left: 0%;
+    font-size: 22px;
+    padding-left: 5%;
+}
+
+.shortcuts-bar > span {
+    position: relative;
+    background-color: rgb(90, 90, 90);
+    border-radius: 100px;
+    top: 8px;
+    left: -75px;
+    margin-left: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    cursor: pointer;
+    transition: background-color 0.25s ease;
+}
+
+.shortcuts-bar > span:hover {
+    background-color: rgb(100, 100, 100);
 }

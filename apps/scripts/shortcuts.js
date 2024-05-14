@@ -24,21 +24,15 @@ document.addEventListener("DOMContentLoaded", function() {
     CreateButton.addEventListener("click", function() {
         var SN = ShortcutName.value.trim();
         var SU = ShortcutURL.value.trim();
-        if (localStorage.getItem(SN) === null) {
+        if (localStorage.getItem("sh_" + SN) === null) {
             if (SN === "" || SU === "") {
                 SendStatus("Please input a name and URL", 2);
-                return;
-            } else if (SN !== "" && SU !== "") {
-                localStorage.setItem(SN, SU);
-                setTimeout(() => {
-                    if (localStorage.getItem(SN) !== null) {
-                        SendStatus("Shortcut created!", 2);
-                    }
-                }, 50);
-            };
+            } else {
+                localStorage.setItem("sh_" + SN, SU);
+                SendStatus("Shortcut created!", 2);
+            }
         } else {
             SendStatus("Shortcut already exists!", 2);
-            return;
-        };
-    });
+        }
+    });    
 });
