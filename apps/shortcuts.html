@@ -5,15 +5,15 @@
         <link rel="stylesheet" href="scripts/shortcuts.css">
         <link rel="shortcut icon" href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjyaQ6R_PMsG1eGrth7Nc0tyQHrWScjaoojxktUnZccfG7zYZEDTUTr7g_E24B8KcFe9yOtflD6B230vpm72TlmkES4zQ8KgRVidSKhpd67yhcZZURQU69O99k1xKoAb9rBiq923iaj052yDD9bJ7z66G1GfHkVOnwXFVZRqE-RzqoEY2AogTvEC8YLGXs/s320/Group%2027.png" type="image/x-icon">
         <title>Shortcuts</title>
-        <script src="scripts/shortcuts.js"></script>
+        <script defer src="scripts/shortcuts.js"></script>
     </head>
     <body>
         <div>
-            <h1>Shortcuts</h1>
+            <h1 onclick="window.open('./shortcuts.html', '_self')">Shortcuts</h1>
             <input autocomplete="off" type="text" id="shortcut-name" placeholder="Shortcut Name">
             <input autocomplete="off" type="text" id="shortcut-url" placeholder="URL">
-            <button id="create-button">Create</button>
-            <button id="reset">Reset Shortcuts</button>
+            <button id="create-button">Create New</button>
+            <button id="reset">Clear Shortcuts</button>
             <span id="status">---</span>
         </div>
     </body>

@@ -55,7 +55,7 @@ button {
 }
 
 .word-input:hover {
-    width: 750px;
+    width: 1000px;
 }
 
 .search-button {
@@ -65,36 +65,4 @@ button {
     width: 48px;
     aspect-ratio: 1 / 1;
     cursor: pointer;
-}
-
-.diction-section {
-    opacity: 0;
-
-    background-color: rgba(255, 255, 255, 0.125);
-    border-radius: 14px;
-
-    width: 700px;
-    height: 400px;
-
-    position: fixed;
-    display: flex;
-    justify-content: top;
-    flex-direction: column;
-    text-align: left;
-    width: 100%;
-
-    padding-left: 10px;
-
-    left: 5%;
-    top: 30%;
-}
-
-.word {
-    font-size: 96px;
-    font-weight: 800;
-}
-
-.meaning {
-    font-size: 24px;
-    padding-left: 10px;
 }

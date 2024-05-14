@@ -92,7 +92,7 @@ button {
 }
 
 .search-input:hover {
-    width: 800px;
+    width: 1000px;
 }
 
 .search-section {
@@ -104,20 +104,14 @@ button {
     position: relative;
     bottom: 45px;
     right: 25px;
-    width: calc(64px + 16px);
-    height: calc(64px + 16px);
+    width: 80px;
+    aspect-ratio: 1 / 1;
     cursor: pointer;
-    transform: rotate(0deg);
     transition: transform 0.75s ease, left 0.75s ease;
 }
 
 .search-button:hover {
     transform: rotate(360deg);
-}
-
-#search-button {
-    border: 0;
-    background-color: transparent !important;
 }
 
 #notification-container {
@@ -139,7 +133,6 @@ button {
 
 .shortcuts-bar {
     position: fixed;
-    background-color: rgb(75, 75, 75);
     width: 100%;
     height: 48px;
     top: 0%;
@@ -150,17 +143,22 @@ button {
 
 .shortcuts-bar > span {
     position: relative;
-    background-color: rgb(90, 90, 90);
     border-radius: 100px;
+    background-color: rgb(90, 90, 90);
     top: 8px;
     left: -75px;
     margin-left: 10px;
     padding-left: 20px;
     padding-right: 20px;
     cursor: pointer;
-    transition: background-color 0.25s ease;
+    transition: background-color 0.35s ease, opacity 0.35s ease;
 }
 
 .shortcuts-bar > span:hover {
     background-color: rgb(100, 100, 100);
+    opacity: 1;
+}
+
+.shortcuts-bar > span:not(:hover) {
+    opacity: 0.75;
 }

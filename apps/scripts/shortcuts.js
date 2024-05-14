@@ -1,38 +1,56 @@
-document.addEventListener("DOMContentLoaded", function() {
-    const CreateButton = document.getElementById("create-button");
-    const ShortcutName = document.getElementById("shortcut-name");
-    const ShortcutURL = document.getElementById("shortcut-url");
-    const ResetButton = document.getElementById("reset");
-    const StatusLabel = document.getElementById("status");
+const CreateButton = document.getElementById("create-button");
+const ShortcutName = document.getElementById("shortcut-name");
+const ShortcutURL = document.getElementById("shortcut-url");
+const ResetButton = document.getElementById("reset");
+const StatusLabel = document.getElementById("status");
 
-    function SendStatus(Status, Duration) {
-        StatusLabel.innerHTML = Status
-        StatusLabel.style.opacity = "1";
-        setTimeout(() => {
-            StatusLabel.style.opacity = "0";
-        }, Duration * 1000);
+function SendStatus(Status, Duration) {
+    StatusLabel.innerHTML = Status
+    StatusLabel.style.opacity = "1";
+    setTimeout(() => {
+        StatusLabel.style.opacity = "0";
+    }, Duration * 1000);
+};
+
+function SaveShortcut(ShortcutName, ShortcutURL) {
+    if (localStorage.getItem("sh_" + ShortcutName) === null) {
+        if (ShortcutName === "" || ShortcutURL === "") {
+            SendStatus("Please Enter A Valid Shortcut", 2)
+        } else {
+            if (ShortcutURL.startsWith("https://")) {
+                localStorage.setItem("sh_" + ShortcutName, ShortcutURL);
+                SendStatus("Shortcut Created", 2);
+            } else {
+                localStorage.setItem("sh_" + ShortcutName, "https://" + ShortcutURL);
+                SendStatus("Shortcut Created", 2);
+            };
+        };
+    } else {
+        SendStatus("Shortcut Already Exists", 2);
     };
+};
 
-    ResetButton.addEventListener("click", function() {
-        localStorage.clear();
-        ShortcutName.value = "";
-        ShortcutURL.value = "";
-        SendStatus("Shortcuts cleared!", 2);
-        return;
-    });
+ResetButton.addEventListener("click", function() {
+    for (var key in localStorage) {
+        if (key.startsWith("sh_")) {
+            localStorage.removeItem(key);
+        };
+    };
+    SendStatus("Shortcuts Cleared", 2);
+    return;
+});
 
-    CreateButton.addEventListener("click", function() {
+document.addEventListener("keydown", function(e) {
+    const Key = e.key;
+    if (Key === "Enter") {
         var SN = ShortcutName.value.trim();
         var SU = ShortcutURL.value.trim();
-        if (localStorage.getItem("sh_" + SN) === null) {
-            if (SN === "" || SU === "") {
-                SendStatus("Please input a name and URL", 2);
-            } else {
-                localStorage.setItem("sh_" + SN, SU);
-                SendStatus("Shortcut created!", 2);
-            }
-        } else {
-            SendStatus("Shortcut already exists!", 2);
-        }
-    });    
+        SaveShortcut(SN, SU);
+    };
+});
+
+CreateButton.addEventListener("click", function() {
+    var SN = ShortcutName.value.trim();
+    var SU = ShortcutURL.value.trim();
+    SaveShortcut(SN, SU);
 });

@@ -27,6 +27,7 @@ input {
     width: 50%;
     height: 32px;
     font-size: 24px;
+    transition: scale calc(0.25s / 1.5) ease;
 }
 
 button {
@@ -40,18 +41,25 @@ button {
     height: 32px;
     font-size: 24px;
     cursor: pointer;
+    transition: scale calc(0.25s / 1.5) ease;
 }
 
 button[id="reset"] {
     color: rgb(200, 0, 0);
 }
 
+button:hover, input:hover, h1:hover {
+    scale: calc(1.125 / 1.05);
+}
+
 span {
-    font-size: 48px;
+    font-size: 24px;
     opacity: 0;
     transition: opacity 0.75s ease;
 }
 
 h1 {
     font-size: 64px;
+    cursor: pointer;
+    transition: scale calc(0.25s / 1.5) ease;
 }
