@@ -52,6 +52,10 @@ function Search(input) {
     };
 };
 
+function GetFavicon(URL, Size) {
+    return `https://www.google.com/s2/favicons?domain=${URL}&sz=${Size}`;
+};
+
 SearchButton.addEventListener("click", function() {
     const trimmedValue = SearchInput.value.trim();
     if (trimmedValue === "") {
@@ -95,6 +99,15 @@ function Load() {
             NewShortcut.innerHTML = key.replace("sh_", "");
             NewShortcut.dataset.href = localStorage.getItem(key);
             ShortcutsBar.appendChild(NewShortcut);
+
+            const NewIcon = document.createElement("img");
+            NewIcon.src = GetFavicon(localStorage.getItem(key), 256);
+            NewIcon.style.position = "relative";
+            NewIcon.style.top = "5px";
+            NewIcon.style.left = "5px";
+            NewIcon.style.width = "24px";
+            NewIcon.style.aspectRatio = "1 / 1";
+            NewShortcut.appendChild(NewIcon);
 
             NewShortcut.addEventListener("click", function() {
                 window.open(NewShortcut.dataset.href, "_self");
