@@ -13,7 +13,6 @@ const Options = {
     NSR: 2250,
 };
 
-
 const AllApps = document.getElementById("apps").children;
 Object.values(AllApps).forEach(element => {
     element.addEventListener("click", function() {

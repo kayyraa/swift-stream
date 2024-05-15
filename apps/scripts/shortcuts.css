@@ -4,6 +4,7 @@ body {
     background-color: rgb(60, 60, 60);
     font-family: "NunitoNewtown", sans-serif !important;
     font-weight: 700;
+    overflow: hidden;
     color: white;
 }
 
@@ -14,6 +15,12 @@ div {
     margin: 0 auto;
     top: 0%;
     width: 100%;
+}
+
+div > span#status {
+    font-size: 24px;
+    opacity: 0;
+    transition: opacity 0.75s ease;
 }
 
 input {
@@ -49,13 +56,7 @@ button[id="reset"] {
 }
 
 button:hover, input:hover, h1:hover {
-    scale: calc(1.125 / 1.05);
-}
-
-span {
-    font-size: 24px;
-    opacity: 0;
-    transition: opacity 0.75s ease;
+    scale: calc(1.125 / 1.025);
 }
 
 h1 {

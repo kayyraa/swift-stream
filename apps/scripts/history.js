@@ -3,7 +3,6 @@ const HistoryContainer = document.getElementById('history');
 function AddHistory(Name, URL, Key) {
     const Item = document.createElement("span");
     Item.innerHTML = Name + " | " + URL;
-    Item.style.position = "absolute";
     Item.style.left = "0%";
     Item.style.width = "100%";
     Item.style.height = "32px";
