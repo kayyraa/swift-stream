@@ -103,6 +103,7 @@ function Load() {
             const NewIcon = document.createElement("img");
             NewIcon.src = GetFavicon(localStorage.getItem(key), 256);
             NewIcon.style.position = "relative";
+            NewIcon.style.borderRadius = "32px";
             NewIcon.style.top = "5px";
             NewIcon.style.left = "5px";
             NewIcon.style.width = "24px";
