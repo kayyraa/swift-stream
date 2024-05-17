@@ -42,6 +42,10 @@ button {
     transform: scale(1.4);
 }
 
+#clock {
+    letter-spacing: 2px;
+}
+
 #apps-button {
     position: fixed;
     right: 1%;
