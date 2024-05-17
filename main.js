@@ -1,3 +1,4 @@
+import { Analytics } from "@vercel/analytics/react"
 import {all as suffixes} from "./modules/suffixes.js";
 import * as ds from "./modules/datastore.js";
 
