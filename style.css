@@ -77,7 +77,6 @@ button {
 .search-input {
     position: relative;
     text-align: center;
-    right: 5px;
     bottom: 75px;
     border: 0;
     width: 570px;
@@ -102,7 +101,7 @@ button {
 .search-button {
     position: relative;
     bottom: 45px;
-    right: 25px;
+    right: 15px;
     width: 80px;
     aspect-ratio: 1 / 1;
     cursor: pointer;
