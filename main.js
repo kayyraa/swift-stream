@@ -1,4 +1,4 @@
-import {all as suffixes} from "./modules/suffixes.js";
+import { all as suffixes } from "./modules/suffixes.js";
 import * as ds from "./modules/datastore.js";
 
 const SearchButton = document.getElementById("search-button");
@@ -13,8 +13,8 @@ const Options = {
     NSR: 2250,
 };
 
-const AllApps = document.getElementById("apps").children;
-Object.values(AllApps).forEach(element => {
+const AllApps = Array.from(Apps.children);
+AllApps.forEach(element => {
     element.addEventListener("click", function() {
         window.open(element.dataset.href, "_self");
     });
@@ -32,7 +32,7 @@ function Notify(notificationText, duration) {
     setTimeout(() => {
         Notification.style.left = "-400px";
     }, duration);
-};
+}
 
 function Search(input) {
     ds.Save("History", input);
@@ -42,19 +42,21 @@ function Search(input) {
             window.open(ds.Load(ModifiedInput), "_self");
         } else {
             window.open(ModifiedInput, "_self");
-        };
+        }
+    } else if (ModifiedInput.endsWith(".com") && !ModifiedInput.startsWith("https://")) {
+        window.open("https://" + ModifiedInput, "_self");
     } else {
         if (ds.Load(ModifiedInput) !== null) {
             window.open(ds.Load(ModifiedInput), "_self");
         } else {
             window.open(`https://www.google.com/search?q=${encodeURIComponent(input)}`, "_self");
-        };
-    };
-};
+        }
+    }
+}
 
 function GetFavicon(URL, Size) {
     return `https://www.google.com/s2/favicons?domain=${URL}&sz=${Size}`;
-};
+}
 
 SearchButton.addEventListener("click", function() {
     const trimmedValue = SearchInput.value.trim();
@@ -62,7 +64,7 @@ SearchButton.addEventListener("click", function() {
         Notify("Please enter a search.", Options.NSR);
     } else {
         Search(trimmedValue);
-    };
+    }
 });
 
 document.addEventListener("keypress", function(event) {
@@ -72,8 +74,8 @@ document.addEventListener("keypress", function(event) {
             Notify("Please enter a search.", Options.NSR);
         } else {
             Search(trimmedValue);
-        };
-    };
+        }
+    }
 });
 
 function Refresh() {
@@ -83,17 +85,13 @@ function Refresh() {
         SearchInput.style.color = endsWithSuffix ? "rgb(0, 0, 0)" : "rgb(200, 0, 0)";
     } else {
         SearchInput.style.color = "rgb(0, 0, 0)";
-    };
-    setTimeout(Refresh, 50);
-};
+    }
+    setTimeout(Refresh, 25);
+}
 
-function Load() {
-    const history = ds.Load("History");
-    if (history) {
-        SearchInput.value = history;
-    };
-    for (var index = 0; index < localStorage.length; index++) {
-        var key = localStorage.key(index);
+function LoadShortcuts() {
+    for (let index = 0; index < localStorage.length; index++) {
+        const key = localStorage.key(index);
         if (key.startsWith("sh_")) {
             const NewShortcut = document.createElement("span");
             NewShortcut.innerHTML = key.replace("sh_", "");
@@ -113,13 +111,24 @@ function Load() {
             NewShortcut.addEventListener("click", function() {
                 window.open(NewShortcut.dataset.href, "_self");
             });
-        };
-    };
-
+        }
+    }
     if (ShortcutsBar.childElementCount === 0) {
         ShortcutsBar.style.backgroundColor = "transparent";
-    };
-};
+    }
+}
+
+function LoadHistory() {
+    const history = ds.Load("History");
+    if (history) {
+        SearchInput.value = history;
+    }
+}
+
+function Load() {
+    LoadHistory();
+    LoadShortcuts();
+}
 
 Refresh();
 Load();

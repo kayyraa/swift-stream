@@ -1,5 +1,4 @@
 @import url("./modules/fonts.css");
-@import url("./modules/animations.css");
 
 body {
     background-color: rgb(60, 60, 60) !important;
@@ -151,11 +150,13 @@ button {
     padding-left: 20px;
     padding-right: 20px;
     cursor: pointer;
-    transition: background-color 0.35s ease, opacity 0.35s ease;
+    transition: background-color 0.35s ease, opacity 0.35s ease, padding 0.35s ease;
 }
 
 .shortcuts-bar > span:hover {
     background-color: rgb(100, 100, 100);
+    padding-left: 30px;
+    padding-right: 30px;
     opacity: 1;
 }
 
