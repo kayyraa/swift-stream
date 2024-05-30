@@ -1,0 +1,96 @@
+@import url("../modules/fonts.css");
+
+body {
+    background-color: rgb(60, 60, 60);
+    color: white;
+    font-family: "NunitoNewtown", sans-serif;
+    overflow: hidden;
+}
+
+header {
+    font-size: 64px;
+    font-weight: 700;
+    margin-left: 25px;
+    cursor: pointer;
+    transition: font-size 0.25s ease;
+}
+
+div.AccountSection {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    width: 100%;
+    background-color: rgb(70, 70, 70);
+    width: 500px;
+    aspect-ratio: 1.75 / 1;
+    border-radius: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.75);
+    box-shadow: 0 0 25px 0.125px rgba(255, 255, 255, 0.25);
+    transition: scale 0.25s ease;
+}
+
+div.AccountSection > span {
+    font-size: 24px;
+    font-weight: 600;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+div.AccountSection:hover {
+    scale: 1.05;
+}
+
+div.Form {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin: 0 auto;
+    width: 100%;
+    width: 600px;
+    aspect-ratio: 2 / 1;
+    border-radius: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.75);
+    box-shadow: 0 0 25px 0.125px rgba(255, 255, 255, 0.25);
+    background-color: rgb(70, 70, 70);
+}
+
+div.Form > h1 {
+    font-size: 48px;
+}
+
+div.Form > input {
+    font-family: "NunitoNewtown", sans-serif;
+    font-weight: 700;
+    font-size: 24px;
+    border: none;
+    border-radius: 512px;
+    width: 90%;
+    text-align: center;
+    margin-top: 5px;
+    transition: scale 0.25s ease;
+}
+
+div.Form > button {
+    font-family: "NunitoNewtown", sans-serif;
+    font-weight: 700;
+    font-size: 24px;
+    border: none;
+    border-radius: 512px;
+    width: 90%;
+    text-align: center;
+    margin-top: 5px;
+    cursor: pointer;
+    transition: scale 0.25s ease;
+}
+
+div.Form > input:hover {
+    scale: 1.05;
+}
+
+div.Form > button:hover {
+    scale: 1.05;
+}
+
+header:hover {
+    font-size: 72px;
+}

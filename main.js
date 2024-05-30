@@ -35,7 +35,9 @@ function Notify(notificationText, duration) {
 }
 
 function Search(input) {
-    ds.Save("History", input);
+    if (ds.Load("USERNAME") !== null) {
+        ds.Save("History", input);
+    };
     const ModifiedInput = input.trim();
     if (ModifiedInput.startsWith("https://")) {
         if (ds.Load(ModifiedInput) !== null) {
