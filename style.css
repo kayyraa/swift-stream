@@ -95,22 +95,26 @@ button {
 }
 
 .search-section {
-    position: relative;
-    left: 22px;
+    padding-top: 50px;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    width: 100%;
 }
 
 .search-button {
     position: relative;
-    bottom: 45px;
-    right: 25px;
-    width: 80px;
+    bottom: 83px;
+    right: 10px;
+    width: 64px;
     aspect-ratio: 1 / 1;
     cursor: pointer;
-    transition: transform 0.75s ease, left 0.75s ease;
+    transition: scale 0.25s ease, rotate 0.65s ease;
 }
 
 .search-button:hover {
-    transform: rotate(360deg);
+    scale: 1.25;
+    rotate: 360deg;
 }
 
 #notification-container {
