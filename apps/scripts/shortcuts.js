@@ -13,21 +13,28 @@ function SendStatus(Status, Duration) {
 };
 
 function SaveShortcut(ShortcutName, ShortcutURL) {
-    if (localStorage.getItem("sh_" + ShortcutName) === null) {
-        if (ShortcutName === "" || ShortcutURL === "") {
-            SendStatus("Please Enter A Valid Shortcut", 2)
-        } else {
-            if (ShortcutURL.startsWith("https://")) {
-                localStorage.setItem("sh_" + ShortcutName, ShortcutURL);
-                SendStatus("Shortcut Created", 2);
+    if (localStorage.getItem("USERNAME") !== null) {
+        if (localStorage.getItem("sh_" + ShortcutName) === null) {
+            if (ShortcutName === "" || ShortcutURL === "") {
+                SendStatus("Please Enter A Valid Shortcut", 2)
             } else {
-                localStorage.setItem("sh_" + ShortcutName, "https://" + ShortcutURL);
-                SendStatus("Shortcut Created", 2);
+                if (ShortcutURL.startsWith("https://")) {
+                    localStorage.setItem("sh_" + ShortcutName, ShortcutURL);
+                    SendStatus("Shortcut Created", 2);
+                } else {
+                    localStorage.setItem("sh_" + ShortcutName, "https://" + ShortcutURL);
+                    SendStatus("Shortcut Created", 2);
+                };
             };
+        } else {
+            SendStatus("Shortcut Already Exists", 2);
         };
     } else {
-        SendStatus("Shortcut Already Exists", 2);
-    };
+        SendStatus("Sign Up Before Creating Any Shortcuts", 2);
+        setTimeout(() => {
+            window.open("../../account/manage.html", "_self");
+        }, 1500);
+    }
 };
 
 ResetButton.addEventListener("click", function() {

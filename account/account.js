@@ -11,6 +11,9 @@ const UsernameInputLogin = document.getElementById("UsernameInputLogin");
 const PasswordInputLogin = document.getElementById("PasswordInputLogin");
 const ConfirmButtonLogin = document.getElementById("ConfirmButtonLogin");
 
+const LogOutButton = document.getElementById("LogOutButton");
+const DeleteAccountButton = document.getElementById("DeleteAccountButton");
+
 Links.forEach(Element => {
     Element.addEventListener("click", function() {
         window.open(Element.dataset.href, "_self");
@@ -101,5 +104,22 @@ if (UsernameInputLogin !== null) {
                 window.open("./signup.html", "_self");
             };
         };
+    });
+};
+
+if (DeleteAccountButton !== null) {
+    DeleteAccountButton.addEventListener("click", function () {
+        localStorage.removeItem("USERNAME");
+        localStorage.removeItem(`${GetAccount(true).Username}_PASSWORD`);
+        localStorage.removeItem(`${GetAccount(true).Username}_ID`);
+        localStorage.removeItem("History");
+        window.open("../index.html", "_self");
+    });
+    LogOutButton.addEventListener("click", function() {
+        localStorage.removeItem("USERNAME");
+        localStorage.removeItem(`${GetAccount(true).Username}_PASSWORD`);
+        localStorage.removeItem(`${GetAccount(true).Username}_ID`);
+        localStorage.removeItem("History");
+        window.open("../index.html", "_self");
     });
 };
