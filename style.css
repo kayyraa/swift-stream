@@ -1,9 +1,7 @@
-@import url("./modules/fonts.css");
-
 body {
     background-color: rgb(60, 60, 60) !important;
     color: white !important;
-    font-family: "NunitoNewtown", sans-serif !important;
+    font-family: "Nunito", sans-serif !important;
     font-size: 1.25em !important;
     overflow: hidden !important;
     user-select: none !important;
