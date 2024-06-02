@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+
+body {
+    background-color: rgb(60, 60, 60);
+    color: white;
+    font-family: "Nunito", sans-serif !important;
+    overflow: hidden !important;
+}
+
+header {
+    font-size: 64px;
+    font-weight: 700;
+    transition: font-size 0.25s ease;
+    cursor: pointer;
+}
+
+.chart {
+    border: 2px solid rgba(255, 255, 255, 0.75);
+    background-color: rgba(255, 255, 255, 0.125);
+    border-radius: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 0 auto;
+    width: 100%;
+    width: 750px;
+    aspect-ratio: 1.25 / 0.75;
+    overflow: hidden;
+    transition: scale 0.25s ease;
+}
+
+.chart div {
+    background-color: rgba(255, 255, 255, 0.125);
+}
+
+.charts {
+    background-color: rgba(255, 255, 255, 0.0625);
+    height: 512px;
+    width: 100%;
+}
+
+.charts img {
+    background-color: rgba(255, 255, 255, 0.125);
+    width: 128px;
+    aspect-ratio: 1 / 1;
+    margin-left: 25px;
+    margin-top: 25px;
+    border-radius: 18px;
+    cursor: pointer;
+}
+
+.charts div {
+    transition: scale 0.25s ease;
+}
+
+.charts div > span {
+    font-size: 22px;
+    font-weight: 700;
+    margin-left: 25px;
+}
+
+.charts div {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.charts div:hover {
+    scale: 1.125;
+}
+
+.chart:hover {
+    scale: 1.0625;
+}
+
+header:hover {
+    font-size: 84px;
+}
