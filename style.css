@@ -81,11 +81,12 @@ button {
     width: 570px;
     height: 32px;
     font-size: 1.5em;
-    font-family: "NunitoNewtown", sans-serif !important;
+    font-family: "Nunito", sans-serif !important;
     border-radius: 50px;
     font-weight: 700;
     transition: color 0.25s ease, width 0.5s ease;
-    padding: 8px;
+    margin-right: -10px;
+    padding: 24px;
 }
 
 .search-input:hover {
@@ -98,6 +99,7 @@ button {
     justify-content: center;
     margin: 0 auto;
     width: 100%;
+    margin-right: -30px;
 }
 
 .search-button {
