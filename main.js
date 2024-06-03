@@ -36,8 +36,14 @@ function Notify(notificationText, duration) {
 
 function Search(input) {
     if (ds.Load("USERNAME") !== null) {
-        ds.Save("History", input);
-    };
+        let history = JSON.parse(ds.Load("History")) || [];
+        if (Array.isArray(history)) {
+            history.push(input);
+            ds.Save("History", JSON.stringify(history));
+        } else {
+            ds.Save("History", JSON.stringify([input]));
+        }
+    }
     const ModifiedInput = input.trim();
     if (ModifiedInput.startsWith("https://")) {
         if (ds.Load(ModifiedInput) !== null) {
@@ -121,9 +127,18 @@ function LoadShortcuts() {
 }
 
 function LoadHistory() {
-    const history = ds.Load("History");
-    if (history) {
-        SearchInput.value = history;
+    if (ds.Load("USERNAME") !== null) {
+        let history = JSON.parse(ds.Load("History")) || [];
+        if (Array.isArray(history) && history.length > 0) {
+            const latestItem = history[history.length - 1];
+            if (latestItem !== "") {
+                SearchInput.value = latestItem;
+            }
+            history = history.filter(item => item !== "");
+            ds.Save("History", JSON.stringify(history));
+        } else {
+            ds.Save("History", JSON.stringify([]));
+        }
     }
 }
 

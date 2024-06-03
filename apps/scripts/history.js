@@ -1,45 +1,71 @@
-const HistoryContainer = document.getElementById('history');
+const HistoryDivision = document.getElementById("history");
 
-function AddHistory(Name, URL, Key) {
-    const Item = document.createElement("span");
-    Item.innerHTML = Name + " | " + URL;
-    Item.style.left = "0%";
-    Item.style.width = "100%";
-    Item.style.height = "32px";
-    Item.style.borderRadius = "16px";
-    Item.style.transition = "opacity 0.25s ease";
-    Item.addEventListener("click", function() {
-        window.open(URL, "_self");
-    });
-    Item.addEventListener("contextmenu", function(e) {
-        e.preventDefault();
-    });
-    Item.addEventListener("mousedown", function(e) {
-        if (e.which === 3) {
-            localStorage.removeItem(Key);
-            Item.style.opacity = "0";
-            setTimeout(() => {
-                Item.remove();
-            }, 250);
-        };
-    });
+function GetHistory() {
+    const History = localStorage.getItem("History");
+    if (History !== null) {
+        return JSON.parse(History);
+    } else {
+        return []; // Return an empty array if there is no history
+    }
+}
 
-    HistoryContainer.appendChild(Item);
-};
+function AddToDivision(Division, History) {
+    Division.innerHTML = "";
+    if (History.length === 0) {
+        const noHistoryMessage = document.createElement("div");
+        noHistoryMessage.innerHTML = "No history items found.";
+        noHistoryMessage.classList.add("no-history-message");
+        Division.appendChild(noHistoryMessage);
+        return; // Exit the function if there are no history items
+    }
+    
+    for (let i = History.length - 1; i >= 0; i--) {
+        const Div = document.createElement("div");
+        Div.dataset.index = i;  // Use index instead of item for easier removal
+        Div.innerHTML = History[i];
+        Div.classList.add("history-item");
+        Division.appendChild(Div);
 
-function CheckHistory() {
-    for (var index = 0; index < localStorage.length; index++) {
-        var key = localStorage.key(index);
-        if (key.startsWith("sh_")) {
-            const FullName = key.replace("sh_", "");
-            const ShortcutURL = localStorage.getItem(key);
-            AddHistory(FullName, ShortcutURL, key);
-        };
-    };
-};
+        Div.addEventListener("click", function () {
+            if (History[i].startsWith("https://")) {
+                window.open(History[i], "_self");
+            } else {
+                window.open(`https://www.google.com/search?q=${encodeURIComponent(History[i])}`, "_self");
+            }
+        });
 
-document.addEventListener("contextmenu", function(e) {
-    e.preventDefault();
-});
+        Div.addEventListener("contextmenu", function(e) {
+            e.preventDefault();
+        });
 
-CheckHistory();
+        let holdTimeout;
+
+        Div.addEventListener("mousedown", function(e) {
+            if (e.button === 0) {
+                Div.style.color = "red";
+                holdTimeout = setTimeout(function() {
+                    const index = Div.dataset.index;
+                    History.splice(index, 1);
+                    localStorage.setItem("History", JSON.stringify(History));
+                    Division.removeChild(Div);
+
+                    if (History.length === 0) {
+                        AddToDivision(Division, History);
+                    }
+                }, 1000);
+            }
+        });
+
+        Div.addEventListener("mouseup", function() {
+            clearTimeout(holdTimeout);
+            Div.style.color = "white";
+        });
+
+        Div.addEventListener("mouseleave", function() {
+            clearTimeout(holdTimeout);
+            Div.style.color = "white";
+        });
+    }
+}
+
+AddToDivision(HistoryDivision, GetHistory());

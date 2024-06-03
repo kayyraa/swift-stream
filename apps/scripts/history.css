@@ -1,41 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+
 body {
-    font-family: "Nunito";
     background-color: rgb(60, 60, 60);
     color: white;
+    font-family: "Nunito", sans-serif;
     overflow: hidden;
 }
 
-h1 {
+header {
     font-size: 64px;
-    text-align: center;
+    font-weight: 700;
     cursor: pointer;
-    transition: scale 0.25s ease;
+    transition: font-size 0.25s ease;
 }
 
-h1:hover {
-    scale: 1.25;
-}
-
-.history {
-    position: absolute;
-    top: 60%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: rgb(70, 70, 70);
-    width: 512px;
-    height: 512px;
+div.history {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    width: 100%;
     border-radius: 16px;
-    font-size: 24px;
-    text-align: center;
+    background-color: rgba(0, 0, 0, 0.125);
+    width: 700px;
+    aspect-ratio: 1.5 / 1;
     overflow: hidden;
 }
 
-.history > span {
-    display: flex;
-    background-color: rgb(90, 90, 90);
-    width: 100%;
-    height: 32px;
-    padding-left: 15px;
-    left: 0%;
+div.history > div {
+    background-color: rgba(0, 0, 0, 0.125);
+    text-align: center;
+    font-size: 18px;
     cursor: pointer;
+    width: 100%;
+    color: white;
+    transition: font-size 0.25s ease, color 1.5s ease;
+}
+
+div.history > div:hover {
+    font-size: 24px;
+}
+
+header:hover {
+    font-size: 84px;
 }
