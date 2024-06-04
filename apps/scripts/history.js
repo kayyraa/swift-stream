@@ -47,7 +47,7 @@ function AddToDivision(Division, History) {
                     const index = Div.dataset.index;
                     History.splice(index, 1);
                     localStorage.setItem("History", JSON.stringify(History));
-                    Division.removeChild(Div);
+                    Division.removeChild(Div); 
 
                     if (History.length === 0) {
                         AddToDivision(Division, History);

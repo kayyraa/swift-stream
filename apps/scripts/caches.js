@@ -15,7 +15,7 @@ function AddHistory(Name, URL, Key) {
         e.preventDefault();
     });
     Item.addEventListener("mousedown", function(e) {
-        if (e.which === 3) {
+        if (e.button === 0) {
             localStorage.removeItem(Key);
             Item.style.opacity = "0";
             setTimeout(() => {

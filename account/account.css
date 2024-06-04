@@ -29,7 +29,7 @@ div.AccountSection {
     margin: 0 auto;
     width: 100%;
     background-color: rgb(70, 70, 70);
-    width: 500px;
+    width: 750px;
     aspect-ratio: 1.75 / 1;
     border-radius: 16px;
     border: 2px solid rgba(255, 255, 255, 0.75);
@@ -66,12 +66,7 @@ div.AccountSection > button {
     border: 2px solid rgba(255, 255, 255, 0.75);
     box-shadow: 0 0 25px 0.125px rgba(255, 255, 255, 0.25);
     margin-top: 3px;
-    transition:
-    scale 0.25s ease,
-    box-shadow 0.25s ease,
-    background-color 0.25s ease,
-    border 0.25s ease,
-    color 0.25s ease;
+    transition:scale 0.25s ease,box-shadow 0.25s ease,background-color 0.25s ease,border 0.25s ease,color 0.25s ease;
 }
 
 div.AccountSection > button:hover {

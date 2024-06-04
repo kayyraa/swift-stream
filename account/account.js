@@ -13,6 +13,8 @@ const ConfirmButtonLogin = document.getElementById("ConfirmButtonLogin");
 
 const LogOutButton = document.getElementById("LogOutButton");
 const DeleteAccountButton = document.getElementById("DeleteAccountButton");
+const ClearHistoryButton = document.getElementById("ClearHistoryButton");
+const ClearShortcutsButton = document.getElementById("ClearShortcutsButton");
 
 Links.forEach(Element => {
     Element.addEventListener("click", function() {
@@ -120,6 +122,19 @@ if (DeleteAccountButton !== null) {
         localStorage.removeItem(`${GetAccount(true).Username}_PASSWORD`);
         localStorage.removeItem(`${GetAccount(true).Username}_ID`);
         localStorage.removeItem("History");
+        window.open("../index.html", "_self");
+    });
+    ClearHistoryButton.addEventListener("click", function() {
+        localStorage.setItem("History", null);
+        window.open("../index.html", "_self");
+    });
+    ClearShortcutsButton.addEventListener("click", function() {
+        for (let index = 0; index < localStorage.length; index++) {
+            const Key = localStorage.key(index);
+            if (Key.startsWith("sh_")) {
+                localStorage.removeItem(Key);
+            };
+        };
         window.open("../index.html", "_self");
     });
 };

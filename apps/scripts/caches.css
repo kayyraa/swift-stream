@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+
 body {
     font-family: "Nunito";
     background-color: rgb(60, 60, 60);
@@ -38,4 +40,12 @@ h1:hover {
     padding-left: 15px;
     left: 0%;
     cursor: pointer;
+    text-align: center;
+    transition: background-color 0.25s ease, padding 0.25s ease;
+}
+
+.history > span:hover {
+    background-color: rgb(95, 95, 95);
+    padding-left: 30px;
+    padding-right: 30px;
 }
