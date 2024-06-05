@@ -6,7 +6,6 @@ function AddHistory(Name, URL, Key) {
     Item.style.left = "0%";
     Item.style.width = "100%";
     Item.style.height = "32px";
-    Item.style.borderRadius = "16px";
     Item.style.transition = "opacity 0.25s ease";
     Item.addEventListener("click", function() {
         window.open(URL, "_self");
