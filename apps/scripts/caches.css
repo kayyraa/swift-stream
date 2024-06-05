@@ -44,7 +44,7 @@ h1:hover {
     transition: background-color 0.25s ease, padding 0.25s ease;
 }
 
-.history > span:hover {
+.history span:hover {
     background-color: rgb(95, 95, 95);
     padding-left: 30px;
     padding-right: 30px;
