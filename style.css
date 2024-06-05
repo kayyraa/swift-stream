@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
-
 body {
     background-color: rgb(60, 60, 60) !important;
     color: white !important;
@@ -28,7 +27,7 @@ button {
     transition: top 0.5s ease;
 }
 
-.apps > img {
+.apps img {
     width: 48px;
     align-self: center;
     cursor: pointer;
@@ -37,8 +36,8 @@ button {
     transition: transform 0.35s ease;
 }
 
-.apps > img:hover {
-    transform: scale(1.4);
+.apps img:hover {
+    transform: scale(1.25);
 }
 
 .charts {
@@ -46,18 +45,14 @@ button {
     border-radius: 8px;
 }
 
-#apps-button {
+.apps-btn {
     position: fixed;
     right: 1%;
     top: 5%;
     width: 64px;
     aspect-ratio: 1 / 1;
     cursor: pointer;
-    transition: transform 0.5s ease;
-}
-
-#apps-button:hover {
-    transform: scale(1.25);
+    transition: transform 0.25s ease;
 }
 
 .search-engine {
@@ -96,6 +91,10 @@ button {
     padding: 24px;
 }
 
+.search-input::placeholder {
+    transition: color 0.25s ease, padding 0.25s ease;
+}
+
 .search-input:hover {
     width: 1000px;
 }
@@ -124,23 +123,6 @@ button {
     rotate: 360deg;
 }
 
-#notification-container {
-    position: fixed;
-    left: -400px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    width: 100%;
-    width: 300px;
-    height: 70px;
-    background-color: white;
-    color: black;
-    font-weight: 800;
-    border-radius: 8px;
-    transition: left 0.75s ease-in-out;
-}
-
 .shortcuts-bar {
     position: fixed;
     width: 100%;
@@ -151,7 +133,7 @@ button {
     padding-left: 5%;
 }
 
-.shortcuts-bar > span {
+.shortcuts-bar span {
     position: relative;
     border-radius: 100px;
     background-color: rgb(90, 90, 90);
@@ -164,13 +146,13 @@ button {
     transition: background-color 0.35s ease, opacity 0.35s ease, padding 0.35s ease;
 }
 
-.shortcuts-bar > span:hover {
+.shortcuts-bar span:hover {
     background-color: rgb(100, 100, 100);
     padding-left: 30px;
     padding-right: 30px;
     opacity: 1;
 }
 
-.shortcuts-bar > span:not(:hover) {
+.shortcuts-bar span:not(:hover) {
     opacity: 0.75;
 }

@@ -3,15 +3,9 @@ import * as ds from "./modules/datastore.js";
 
 const SearchButton = document.getElementById("search-button");
 const SearchInput = document.getElementById("search-input");
-const Notification = document.getElementById("notification-container");
-const NotificationText = document.getElementById("notification-text");
 const AppsButton = document.getElementById("apps-button");
 const Apps = document.getElementById("apps");
 const ShortcutsBar = document.getElementById("shortcuts-bar");
-
-const Options = {
-    NSR: 2250,
-};
 
 const AllApps = Array.from(Apps.children);
 AllApps.forEach(element => {
@@ -25,14 +19,6 @@ AppsButton.addEventListener("click", function() {
     Apps.style.top = isEnabled ? `-55%` : `${parseInt(Apps.dataset.top)}%`;
     Apps.dataset.enabled = !isEnabled;
 });
-
-function Notify(notificationText, duration) {
-    NotificationText.textContent = notificationText;
-    Notification.style.left = "10px";
-    setTimeout(() => {
-        Notification.style.left = "-400px";
-    }, duration);
-}
 
 function Search(input) {
     if (ds.Load("USERNAME") !== null) {
@@ -68,22 +54,18 @@ function GetFavicon(URL, Size) {
 
 SearchButton.addEventListener("click", function() {
     const trimmedValue = SearchInput.value.trim();
-    if (trimmedValue === "") {
-        Notify("Please enter a search.", Options.NSR);
-    } else {
+    if (trimmedValue !== "") {
         Search(trimmedValue);
-    }
+    };
 });
 
 document.addEventListener("keypress", function(event) {
     if (event.key === "Enter") {
         const trimmedValue = SearchInput.value.trim();
-        if (trimmedValue === "") {
-            Notify("Please enter a search.", Options.NSR);
-        } else {
+        if (trimmedValue !== "") {
             Search(trimmedValue);
         }
-    }
+    };
 });
 
 function Refresh() {

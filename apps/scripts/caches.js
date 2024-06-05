@@ -6,7 +6,6 @@ function AddHistory(Name, URL, Key) {
     Item.style.left = "0%";
     Item.style.width = "100%";
     Item.style.height = "32px";
-    Item.style.transition = "opacity 0.25s ease";
     Item.addEventListener("click", function() {
         window.open(URL, "_self");
     });
@@ -15,12 +14,21 @@ function AddHistory(Name, URL, Key) {
     });
     Item.addEventListener("mousedown", function(e) {
         if (e.button === 0) {
-            localStorage.removeItem(Key);
-            Item.style.opacity = "0";
-            setTimeout(() => {
+            Item.style.color = "red";
+
+            let deletionTimeout = setTimeout(() => {
+                localStorage.removeItem(Key);
                 Item.remove();
-            }, 250);
-        };
+            }, 1250);
+
+            function abortDeletion() {
+                clearTimeout(deletionTimeout);
+                Item.style.color = "";
+                window.removeEventListener("mouseup", abortDeletion);
+            }
+
+            window.addEventListener("mouseup", abortDeletion);
+        }
     });
 
     HistoryContainer.appendChild(Item);
