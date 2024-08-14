@@ -121,9 +121,7 @@ function LoadShortcuts() {
             ShortcutsBar.appendChild(NewShortcut);
 
             const NewIcon = document.createElement("img");
-            NewIcon.src = `https://logo.clearbit.com/${localStorage.getItem(
-                key
-            )}&sz=${256}`;
+            NewIcon.src = `https://logo.clearbit.com/${localStorage.getItem(key)}`;
             NewIcon.style.position = "relative";
             NewIcon.style.borderRadius = "32px";
             NewIcon.style.top = "5px";
