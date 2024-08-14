@@ -121,7 +121,7 @@ function LoadShortcuts() {
             ShortcutsBar.appendChild(NewShortcut);
 
             const NewIcon = document.createElement("img");
-            NewIcon.src = `https://www.google.com/s2/favicons?domain=${localStorage.getItem(
+            NewIcon.src = `https://logo.clearbit.com/${localStorage.getItem(
                 key
             )}&sz=${256}`;
             NewIcon.style.position = "relative";
